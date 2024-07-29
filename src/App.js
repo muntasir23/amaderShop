@@ -1,11 +1,13 @@
+import { Provider } from "react-redux";
 import "./App.css";
 import Navbar from "./components/Navbar";
 import ProductList from "./components/ProductList";
 import SidebarInputs from "./components/SidebarInputs";
+import store from "./redux/store";
 
 function App() {
   return (
-    <div>
+    <Provider store={store}>
       <header id="header">
         <Navbar />
       </header>
@@ -19,13 +21,7 @@ function App() {
           </div>
         </div>
       </div>
-      {/* <div id="sidebar" className="w-[100%] flex items-start justify-center">
-        <SidebarInputs />
-      </div>
-      <div id="content1">
-        <ProductList />
-      </div> */}
-    </div>
+    </Provider>
   );
 }
 
