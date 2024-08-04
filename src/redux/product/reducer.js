@@ -1,4 +1,4 @@
-import { ADDED } from "./actionTypes";
+import { ADDED, STOCKDECRMENT, STOCKINCREMENT } from "./actionTypes";
 import { initialState } from "./initialState";
 
 const nextId = (products) => {
@@ -20,13 +20,37 @@ const productReducer = (state = initialState, action) => {
           category: action.payload.category,
           imgUrl: action.payload.imgUrl,
           price: action.payload.price,
-          quantity: action.payload.quantity,
+          quantity: parseInt(action.payload.quantity),
         },
       ];
 
+    case STOCKDECRMENT:
+      return state.map((item) => {
+        if (item.id === action.payload) {
+          return {
+            ...item,
+            quantity: item.quantity - 1,
+          };
+        } else {
+          return item;
+        }
+      });
+
+    case STOCKINCREMENT:
+      return state.map((item) => {
+        if (item.id === action.payload.id) {
+          return {
+            ...item,
+            quantity: item.quantity + action.payload.quantity,
+          };
+        } else {
+          return item;
+        }
+      });
+
     default:
-      return state
+      return state;
   }
 };
 
-export default productReducer
+export default productReducer;
