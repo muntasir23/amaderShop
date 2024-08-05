@@ -5,13 +5,10 @@ import { useSelector } from "react-redux";
 
 export default function Navbar({ handleGOHome, handleGOCart }) {
   const carts = useSelector((state) => state.carts);
-
   const cartItemNo = carts.reduce((total, product) => total + product.qyt, 0);
 
-  console.log("this is " + parseInt(cartItemNo));
-
   return (
-    <div className="w-[100%] h-full grid place-items-center p-1">
+    <div className="w-[100%] h-full grid place-items-center p-1 sticky top-0 z-[9999] bg-black">
       <div className="md:w-[900px] w-[95%] flex items-center justify-between text-white">
         <div className="flex items-center justify-center gap-4">
           <p className="bg-zinc-950 p-3 text-[20px] rounded-full border border-green-400">

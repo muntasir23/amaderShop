@@ -13,7 +13,7 @@ export default function SidebarInputs() {
     },
   ]);
 
-   const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -25,7 +25,6 @@ export default function SidebarInputs() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(productData);
     setProductData({
       productName: "",
       category: "",
@@ -33,7 +32,7 @@ export default function SidebarInputs() {
       price: "",
       quantity: "",
     });
-    dispatch(added(productData))
+    dispatch(added(productData));
   };
 
   return (
@@ -42,7 +41,7 @@ export default function SidebarInputs() {
         Add New Product
       </h1>
 
-      <form onSubmit={handleSubmit} >
+      <form onSubmit={handleSubmit}>
         <label htmlFor="productName" className="font-semibold">
           Product Name
         </label>{" "}

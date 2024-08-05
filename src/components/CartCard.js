@@ -15,29 +15,40 @@ export default function Cart({ cart }) {
     console.log(id);
   };
 
+  if (qyt === 0) {
+    dispatch(removeFromCart(id));
+  }
+
   const handleIncrement = () => {
-    dispatch(increment(id))
+    dispatch(increment(id));
     dispatch(stockDecrement(id));
   };
   const handleDecrement = () => {
-    dispatch(decrement(id))
-    dispatch(stockIncrement(id, qyt));
+    dispatch(decrement(id));
+    dispatch(stockIncrement(id, 1));
   };
 
   return (
     <div className="border p-2 flex items-center justify-between md:w-[700px] w-[100%] shadow mb-3">
-      {/* <h1>{cart.productName}</h1>
-      <h1>{cart.price}</h1>
-      <h1>{cart.qyt}</h1>
-      <h1>{cart.quantity}</h1> */}
       <div className="w-[100px] h-[70px] overflow-hidden">
         <img src={cart.imgUrl} alt="" className="w-[100%]" />
       </div>
       <div className="flex items-center justify-center gap-5">
         <div className="flex items-center justify-center gap-2">
-          <button onClick={handleIncrement} className="font-bold md:text-[18px] text-[14px]">+</button>
+          <button
+            onClick={handleIncrement}
+            disabled={cart.quantity === cart.qyt}
+            className="font-bold md:text-[18px] text-[14px]"
+          >
+            +
+          </button>
           <p className="md:text-[18px] text-[14px]">{cart.qyt}</p>
-          <button onClick={handleDecrement} className="font-bold md:text-[18px] text-[14px]">-</button>
+          <button
+            onClick={handleDecrement}
+            className="font-bold md:text-[18px] text-[14px]"
+          >
+            -
+          </button>
         </div>
         <h3 className="font-bold">BDT {cart.price * cart.qyt}</h3>
       </div>

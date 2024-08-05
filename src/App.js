@@ -6,13 +6,19 @@ import SidebarInputs from "./components/SidebarInputs";
 import store from "./redux/store";
 import { useState } from "react";
 import Carts from "./components/Carts";
+import DiscountBanner from "./components/DiscountBanner";
 
 function App() {
   const [cartMode, setCartMode] = useState(false);
+  const [discount, setDisCount] = useState(true);
 
   const handleGOCart = () => {
     setCartMode(true);
   };
+   
+  const handleDiscountClose = () =>{
+    setDisCount(false)
+  }
 
   const handleGOHome = () => {
     setCartMode(false);
@@ -20,10 +26,11 @@ function App() {
 
   return (
     <Provider store={store}>
-      <header id="header">
-        <Navbar handleGOHome={handleGOHome} handleGOCart={handleGOCart} />
-      </header>
-
+      <Navbar handleGOHome={handleGOHome} handleGOCart={handleGOCart} />
+      {
+        discount ?  <DiscountBanner handleDiscountClose={handleDiscountClose} /> : <></>
+      }
+     
       <div className="w-full grid place-items-center">
         {cartMode ? (
           <Carts />
